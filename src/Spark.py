@@ -1,16 +1,13 @@
 import wx
 import ui
 import speech_recognition as sr
-#from gtts import gTTS
 import win32com.client as wincl
-#import os
 import urllib
 import webbrowser
 from bs4 import BeautifulSoup
 import requests
 import re
 import wolframalpha
-#import playsound
 import time
 import sys
 import winshell
@@ -38,32 +35,24 @@ class Gui(ui.MainFrame):
             print(e)
 
 def play_audio_and_display(text):
-    ''' tts = gTTS(text,lang='en')
-     _file = text[0:4]+'.mp3'
-     tts.save(_file)
-     playsound.playsound(_file,True)
-     audio = MP3(_file)'''
     frame.display.AppendText('\n'+text+'\n')
-    time.sleep(2.5)
+    time.sleep(1.5)
     speak.Speak(text)
 
 def wolfram_alpha(query):
     frame.text.SetValue(query)
     frame.display.AppendText('\nSearching on wolframalpha for '+query)
-    speak.Speak('Searching on WolFramAlpha for '+query)
     try:
          client = wolframalpha.Client(app_id)
          res = client.query(query)
          ans = next(res.results).text
          play_audio_and_display(ans)
     except:
-        #print('Searching on google')
         google(query)
 
 def google(query):
     frame.text.SetValue(query)
     frame.display.AppendText('\nSearching on google for '+query)
-    speak.Speak('Searching on google for '+query)
     google_link = 'https://www.google.com/search?q='+query
     html = requests.get(google_link).text
     soup = BeautifulSoup(html, 'lxml')
@@ -82,24 +71,17 @@ def google(query):
 def wikipedia(query):
     frame.text.SetValue(query)
     frame.display.AppendText('\Searching on wikipedia for '+query)
-    speak.Speak('Searching on wikipedia for '+query)
     google_link = 'https://en.wikipedia.org/wiki/'+query
     html = requests.get(google_link).text
     soup = BeautifulSoup(html, 'lxml')
     tags =  soup.find('p')
-    #print(tags.text)
     play_audio_and_display(tags.text)
 
 def play_music(music):
      #Search url
-    youtube_url = 'https://www.youtube.com/results?search_query='
-    #Build a full search url for music request
-    youtube_url +=music
-    #download a webpage
-    html  =  requests.get(youtube_url).text
-    #Soupify it
+    youtube_url = 'https://www.youtube.com/results?search_query='+music
+    html  =  requests.get(youtube_url).text #download web page
     soup = BeautifulSoup(html, 'lxml')
-    #Find all h3 tags
     h3_tags = soup.find_all('h3')
     url =''
     for tag in h3_tags:
@@ -107,8 +89,7 @@ def play_music(music):
         if a_tag!= None and a_tag.get('href').startswith('/watch') :
             url = a_tag.get('href')
             break;      #can add more links to list for playlist
-    #Build the final link
-    url = urllib.parse.urljoin('https://youtube.com/', url)
+    url = urllib.parse.urljoin('https://youtube.com/', url) #Build the final link
     webbrowser.open(url)
 
 def dictionary(word):
@@ -117,7 +98,7 @@ def dictionary(word):
     soup = BeautifulSoup(html,'lxml')
     div_tags =  soup.find_all('div',{'class':'def-content'})
 
-    #If word is mispelled, find the suggested word
+    #If word is misspelled, find the suggested word
     if not div_tags:
         word = soup.find('span',{'class':'me'}).text
         play_audio_and_display('Did you mean '+word+'?')
@@ -125,7 +106,6 @@ def dictionary(word):
         html = requests.get(url).text
         soup = BeautifulSoup(html,'lxml')
         div_tags =  soup.find_all('div',{'class':'def-content'})
-
 
     list = div_tags[0].text.split(':')
     meaning = (list[0]).lstrip()
@@ -144,25 +124,30 @@ def dictionary(word):
     else:
         play_audio_and_display(meaning)
 
+def internet_on():
+    try:
+        urllib.request.urlopen('http://www.google.com')
+        return True
+    except:
+        return False
+
 
 def command(request):
     request = request.lower()
     frame.text.SetValue(request)
     if request.startswith('play'):
         play_music(request.replace('play','').lstrip())
-    elif re.match('[w,h,i]',request[0:4]):
+    elif re.match('[w,h,i,f]',request[0:4]):
         wolfram_alpha(request)
     elif 'define' in request:
         dictionary(request.split(' ')[1])
     elif request == 'turn off':
-        play_audio_and_display('See you, Niraj!')
+        play_audio_and_display('Turning off!')
         sys.exit()
     elif 'empty' in request:
         try:
-            #empty recycle bin
-            winshell.recycle_bin().empty(confirm=False, show_progress=False, sound=False)
+            winshell.recycle_bin().empty(confirm=False, show_progress=False, sound=False)     #empty recycle bin
             self.assertFalse(list(recycle_bin))
-            #add empty %temp% files
             time.sleep(5)
             runCommand = 'del /p destination/C:/Users/pnira/AppData/Local/Temp/'
             subprocess.check_call(runCommand)
@@ -176,6 +161,7 @@ def command(request):
             frame.display.AppendText(e)
     else:
         google(request)
+        wikepedia(request)
 
 def get_audio(return_audio):
     r = sr.Recognizer()
@@ -183,7 +169,6 @@ def get_audio(return_audio):
         frame.display.AppendText('\nListening...\n')
         audio = r.listen(source)
 
-    # Speech recognition using Google API
     try:
         frame.display.AppendText('You said: ' + r.recognize_google(audio)+'\n')
         if return_audio:
@@ -200,4 +185,8 @@ if __name__ == '__main__':
     app =  wx.App(False)
     frame = Gui(None)
     frame.Show(True)
-    app.MainLoop()
+    #Check the internet connection
+    if internet_on():
+        app.MainLoop()
+    else:
+        play_audio_and_display('Hmm...I am having trouble connecting to the internet.')
