@@ -36,14 +36,7 @@ class MainFrame ( wx.Frame ):
 
 		bSizer5 = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.panel = wx.Panel( self, wx.ID_ANY, wx.DefaultPosition, wx.Size( -1,350 ), wx.NO_BORDER|wx.TAB_TRAVERSAL )
-		self.panel.SetFont( wx.Font( 14, wx.FONTFAMILY_SCRIPT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, "Lucida Handwriting" ) )
-		self.panel.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_HIGHLIGHTTEXT ) )
-		self.panel.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_HIGHLIGHTTEXT ) )
-
-		bSizer5.Add( self.panel, 1, wx.EXPAND |wx.ALL, 5 )
-
-		self.display = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 900,400 ), wx.TE_AUTO_URL|wx.TE_MULTILINE|wx.TE_RICH2|wx.TE_WORDWRAP|wx.ALWAYS_SHOW_SB|wx.VSCROLL )
+		self.display = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 800,400 ), wx.TE_AUTO_URL|wx.TE_MULTILINE|wx.TE_RICH2|wx.TE_WORDWRAP|wx.ALWAYS_SHOW_SB|wx.VSCROLL )
 		self.display.SetFont( wx.Font( 12, wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Cambria" ) )
 
 		bSizer5.Add( self.display, 0, wx.ALL, 5 )
