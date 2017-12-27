@@ -18,7 +18,7 @@ import subprocess
 from mutagen.mp3 import MP3
 
 #WolFramAlpha APPID goes here
-app_id = 'YT547P-U7GE8G74UV'
+app_id = ''
 speak = wincl.Dispatch('SAPI.SpVoice')
 welcome_msg = '''Hello sir, how can I help you?'''
 
