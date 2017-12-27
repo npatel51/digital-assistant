@@ -1,0 +1,6 @@
+wolframalpha==3.0
+winshell==0.6
+wxPython==4.0.0b2
+requests==2.18.4
+SpeechRecognition==3.8.1
+beautifulsoup4==4.6.0
