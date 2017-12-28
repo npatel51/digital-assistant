@@ -1,5 +1,8 @@
-# Spark
-Spark: A search bot (or web crawler sort of) that takes text or voice as an input and responds in form of text and audio. It can play music from YouTube, delete temporary files on your computer, open programs available in os, perform Mathematical calculations, shutdown computer or itself, and much more to add. 
+# Synopsis
+Spark: A search bot that takes _text_ or _voice_ as an input and responds in form of text and audio. It can play music from YouTube, delete temporary files on your computer, open programs available in OS, perform Mathematical calculations, shutdown itself, and more. 
+
+# Motivation 
+The motivation for doing this project was primarily an interest in learning Python and to create something useful that I or someone else may use. Initially, the idea was to make a simple bot that plays music on YouTube, but then I thought maybe I can extend this and so I turned it into a search bot, of course, it's not as concrete as other digital assistants available, but it can be improved.  
 
 # Features
 Spark could do the following ( you can either type in the search box or click on the search button to initiate):
@@ -11,6 +14,7 @@ Spark could do the following ( you can either type in the search box or click on
   * Displays the result on GUI
   * Open programs (Say something like 'open Excel')
   * Turn's off (Say 'Turn off')
+  * More coming soon 
   
 # Installation
 
@@ -21,8 +25,9 @@ Clone and Install the requirements.
     cd Spark\src\
     pip install -r requirements.txt
     
-For standalone executable:[PyInstalller](https://pythonhosted.org/PyInstaller/)
-For Windows, PyWin32 or the more recent pypiwin32 is a prerequisite.
+For standalone executable install [PyInstalller](https://pythonhosted.org/PyInstaller/)
+
+For Windows, PyWin32 or the more recent [pypiwin32](https://pypi.org/project/pypiwin32/) is a prerequisite.
     
     pip install pypiwin32
     pip install pyinstaller
@@ -31,7 +36,17 @@ For Windows, PyWin32 or the more recent pypiwin32 is a prerequisite.
     pyinstaller Spark.py
     cd Spark\dist\Spark\Spark.exe
   
-It will generate a bundle in the directory called dist where you could find the executable file.
+It will generate a bundle in the directory called dist where you could find the executable file. I've chosen Wolfram Alpha as primary search place for any query if you do decide to use it you would need a Wolfram [AppID](https://developer.wolframalpha.com/portal/signup.html) to call the Wolfram Alpha API.
+
+# Demo
+![](https://github.com/npatel51/Spark/blob/master/Images/play_song.gif)
+
+
+![](https://github.com/npatel51/Spark/blob/master/Images/Search.JPG)
+
+
+
+
 
 
 
