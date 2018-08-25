@@ -1,9 +1,6 @@
 # Synopsis
 Spark: A search bot that takes _text_ or _voice_ as an input and responds in form of text and audio. It can play music from YouTube, delete temporary files on your computer, open programs available in OS, perform Mathematical calculations, shutdown itself, and more. 
 
-# Motivation 
-The motivation for doing this project was primarily an interest in learning Python and to create something useful that I or someone else may use. Initially, the idea was to make a simple bot that plays music on YouTube, but then I thought maybe I can extend this and so I turned it into a search bot, of course, it's not as concrete as other digital assistants available, but it can be improved.  
-
 # Features
 Spark could do the following ( you can either type in the search box or click on the search button to initiate):
   * Play music on YouTube (e.g. Say or type 'play song you like')
