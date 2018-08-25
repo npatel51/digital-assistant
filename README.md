@@ -1,5 +1,5 @@
 # Synopsis
-Spark: A search bot that takes _text_ or _voice_ as an input and responds in form of text and audio. It can play music from YouTube, delete temporary files on your computer, open programs available in OS, perform Mathematical calculations, shutdown itself, and more. 
+A simple search bot that can perform various tasks such as playing music on YouTube, cleaning up unnecessary files, opening programs on windows system by voice command, performing mathematical computation, &c.
 
 # Features
 Spark could do the following ( you can either type in the search box or click on the search button to initiate):
