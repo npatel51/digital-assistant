@@ -2,7 +2,7 @@
 A simple search bot that can perform various tasks such as playing music on YouTube, cleaning up unnecessary files, opening programs on windows system by voice command, performing mathematical computation, &c.
 
 # Features
-Spark could do the following ( you can either type in the search box or click on the search button to initiate):
+The bot could do the following ( you can either type in the search box or click on the search button to initiate):
   * Play music on YouTube (e.g. Say or type 'play song you like')
   * Mathematical calculation 
   * Basic Search ( Say 'what is github?') 
@@ -10,8 +10,7 @@ Spark could do the following ( you can either type in the search box or click on
   * Find a definition and example sentence ( Say 'define propine')
   * Displays the result on GUI
   * Open programs (Say something like 'open Excel')
-  * Turn's off (Say 'Turn off')
-  * More coming soon 
+  * Turn's off (Say 'Turn off') 
   
 # Installation
 
